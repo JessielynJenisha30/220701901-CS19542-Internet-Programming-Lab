@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Registration</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  input[type="text"], input[type="email"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+
+  .reset-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .reset-btn:hover {
+    background-color: #d32f2f;
+  }
+</style>
+<script>
+function validateForm() {
+  var isValid = true;
+  
+  // Reset all error messages
+  var errorElements = document.getElementsByClassName('error');
+  for (var i = 0; i < errorElements.length; i++) {
+    errorElements[i].innerText = "";
+  }
+  
+  // Validate student_name
+  var name = document.getElementById('student_name').value;
+  if (name === "") {
+    document.getElementById('nameError').innerText = "Please enter your name";
+    isValid = false;
+  }
+
+  // Validate rollno
+  var rollno = document.getElementById('rollno').value;
+  if (rollno === "") {
+    document.getElementById('rollnoError').innerText = "Please enter your roll number";
+    isValid = false;
+  }
+
+  // Validate gender
+  var gender = document.querySelector('input[name="gender"]:checked');
+  if (!gender) {
+    document.getElementById('genderError').innerText = "Please select your gender";
+    isValid = false;
+  }
+
+  // Validate year
+  var year = document.getElementById('year').value;
+  if (year === "") {
+    document.getElementById('yearError').innerText = "Please enter your year";
+    isValid = false;
+  }
+
+  // Validate department
+  var department = document.getElementById('department').value;
+  if (department === "") {
+    document.getElementById('departmentError').innerText = "Please enter your department";
+    isValid = false;
+  }
+
+  // Validate Section
+  var section = document.getElementById('section').value;
+  if (section === "") {
+    document.getElementById('sectionError').innerText = "Please enter your section";
+    isValid = false;
+  }
+
+  // Validate mobile_no
+  var mobilePattern = /^\d{10}$/;
+  var mobile_no = document.getElementById('mobile_no').value;
+  if (!mobilePattern.test(mobile_no)) {
+    document.getElementById('mobileError').innerText = "Please enter a valid 10-digit mobile number";
+    isValid = false;
+  }
+
+  // Validate E-Mail_ID
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var email = document.getElementById('email').value;
+  if (!emailPattern.test(email)) {
+    document.getElementById('emailError').innerText = "Please enter a valid email address";
+    isValid = false;
+  }
+
+  // Validate Address
+  var address = document.getElementById('address').value;
+  if (address === "") {
+    document.getElementById('addressError').innerText = "Please enter your address";
+    isValid = false;
+  }
+
+  // Validate City
+  var city = document.getElementById('city').value;
+  if (city === "") {
+    document.getElementById('cityError').innerText = "Please enter your city";
+    isValid = false;
+  }
+
+  // Validate Country
+  var country = document.getElementById('country').value;
+  if (country === "") {
+    document.getElementById('countryError').innerText = "Please enter your country";
+    isValid = false;
+  }
+
+  // Validate pincode
+  var pincodePattern = /^\d{6}$/;
+  var pincode = document.getElementById('pincode').value;
+  if (!pincodePattern.test(pincode)) {
+    document.getElementById('pincodeError').innerText = "Please enter a valid 6-digit pincode";
+    isValid = false;
+  }
+
+  return isValid;
+}
+</script>
+</head>
+<body>
+<div class="container">
+<h2>Course Registration Form</h2>
+<form method="post" action="#" onsubmit="return validateForm()">
+  
+  <!-- Student Name -->
+  <div class="form-group">
+    <label for="student_name">Name:</label>
+    <input type="text" id="student_name" name="student_name">
+    <span id="nameError" class="error"></span>
+  </div>
+  
+  <!-- Roll Number -->
+  <div class="form-group">
+    <label for="rollno">Roll Number:</label>
+    <input type="text" id="rollno" name="rollno">
+    <span id="rollnoError" class="error"></span>
+  </div>
+  
+  <!-- Gender -->
+  <div class="form-group">
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label>
+    <span id="genderError" class="error"></span>
+  </div>
+  
+  <!-- Year -->
+  <div class="form-group">
+    <label for="year">Year:</label>
+    <input type="text" id="year" name="year">
+    <span id="yearError" class="error"></span>
+  </div>
+  
+  <!-- Department -->
+  <div class="form-group">
+    <label for="department">Department:</label>
+    <input type="text" id="department" name="department">
+    <span id="departmentError" class="error"></span>
+  </div>
+  
+  <!-- Section -->
+  <div class="form-group">
+    <label for="section">Section:</label>
+    <input type="text" id="section" name="section">
+    <span id="sectionError" class="error"></span>
+  </div>
+  
+  <!-- Mobile Number -->
+  <div class="form-group">
+    <label for="mobile_no">Mobile Number:</label>
+    <input type="text" id="mobile_no" name="mobile_no">
+    <span id="mobileError" class="error"></span>
+  </div>
+  
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">E-Mail ID:</label>
+    <input type="text" id="email" name="email">
+    <span id="emailError" class="error"></span>
+  </div>
+  
+  <!-- Address -->
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address">
+    <span id="addressError" class="error"></span>
+  </div>
+  
+  <!-- City -->
+  <div class="form-group">
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city">
+    <span id="cityError" class="error"></span>
+  </div>
+  
+  <!-- Country -->
+  <div class="form-group">
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country">
+    <span id="countryError" class="error"></span>
+  </div>
+  
+  <!-- Pincode -->
+  <div class="form-group">
+    <label for="pincode">Pincode:</label>
+    <input type="text" id="pincode" name="pincode">
+    <span id="pincodeError" class="error"></span>
+  </div>
+  
+  <!-- Submit and Reset Buttons -->
+  <div style="text-align: center;">
+    <input type="submit" value="Submit" class="submit-btn">
+    <input type="reset" value="Clear" class="reset-btn">
+  </div>
+</form>
+</div>
+</body>
+</html>
