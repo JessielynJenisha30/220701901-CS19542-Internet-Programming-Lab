@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Alphabet Bubble Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        #startButton {
+            margin-top: 20%;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="startButton">Start</button>
+    <div id="timer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var width = screen.width - 100;
+            var height = screen.height - 200;
+            var bubbles = [];
+            var timer = 150; // Game time in seconds
+
+            // Function to create random bubbles
+            function createRandomBubble() {
+                var randomCharCode = Math.floor(Math.random() * (90 - 65 + 1)) + 65;
+                var randomChar = String.fromCharCode(randomCharCode);
+                var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                var bubble = $('<div class="bubble">' + randomChar + '</div>').css({
+                    'background-color': randomColor,
+                    'left': Math.random() * width + 'px',
+                    'top': Math.random() * height + 'px'
+                });
+                bubbles.push(randomChar);
+                $('body').append(bubble);
+            }
+
+            // Timer function to reduce time and stop game when time is up
+            function startTimer() {
+                var gameInterval = setInterval(function() {
+                    $('#timer').text(timer);
+                    timer--;
+
+                    if (timer < 0) {
+                        clearInterval(gameInterval);
+                        alert("Time's up! Game Over.");
+                        $('.bubble').remove();
+                    }
+                }, 1000);
+            }
+
+            // Start game when button is clicked
+            $('#startButton').click(function() {
+                $('#startButton').hide();
+                startTimer();
+
+                // Create random bubbles every 500 milliseconds
+                var bubbleInterval = setInterval(function() {
+                    if (timer >= 0) {
+                        createRandomBubble();
+                    } else {
+                        clearInterval(bubbleInterval);
+                    }
+                }, 500);
+
+                // Event listener for keypress to pop the bubble
+                $(document).keypress(function(e) {
+                    var keyCode = e.which;
+                    var pressedChar = String.fromCharCode(keyCode).toUpperCase();
+
+                    // Check if a bubble contains the pressed character
+                    $('.bubble').each(function() {
+                        if ($(this).text() === pressedChar) {
+                            $(this).remove(); // Remove bubble
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
