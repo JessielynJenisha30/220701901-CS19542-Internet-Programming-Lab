@@ -3,63 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>FunLand Toy Store</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Toy Store.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="page.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
 </head>
 <body>
-  <!-- Your content will go here -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">J Jessielyn Jenisha</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="#">FunLand</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Toys</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <section id="home" class="container mt-5">
-    <h1 class="text-center">Welcome to My Portfolio</h1>
-    <p class="text-center">Showcasing my projects and photography</p>
+  <!-- Home Section -->
+  <section id="home" class="container mt-5 text-center">
+    <h1 class="display-4"><b>Welcome to FunLand Toy Store</b></h1>
+    <p class="lead">Discover a world of fun and joy for kids of all ages!</p>
   </section>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+  <!-- Toy Gallery with Lightbox -->
   <section id="gallery" class="container mt-5">
-    <h2 class="text-center">Gallery</h2>
+    <h2 class="text-center">Our Toys</h2>
     <div class="row">
       <div class="col-md-4 mb-3">
-        <a href="image1.jpg" data-toggle="lightbox" data-gallery="gallery">
-          <img src="image1.jpg" class="img-fluid rounded">
+        <a href="Teddy Bear.jpg" data-toggle="lightbox" data-gallery="gallery">
+          <img src="Teddy Bear.jpg" class="img-fluid rounded">
         </a>
       </div>
       <div class="col-md-4 mb-3">
-        <a href="image2.jpg" data-toggle="lightbox" data-gallery="gallery">
-          <img src="image2.jpg" class="img-fluid rounded">
+        <a href="Wooden building blocks.jpg" data-toggle="lightbox" data-gallery="gallery">
+          <img src="Wooden building blocks.jpg" class="img-fluid rounded">
         </a>
       </div>
       <div class="col-md-4 mb-3">
-        <a href="image3.jpg" data-toggle="lightbox" data-gallery="gallery">
-          <img src="image3.jpg" class="img-fluid rounded">
+        <a href="Mini Vehicle toys.jpg" data-toggle="lightbox" data-gallery="gallery">
+          <img src="Mini Vehicle toys.jpg" class="img-fluid rounded">
         </a>
       </div>
     </div>
   </section>
-  
-  <script>
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox();
-    });
-  </script>
-<section id="contact" class="container mt-5">
-    <h2 class="text-center">Contact Me</h2>
+
+  <!-- Contact Form -->
+  <section id="contact" class="container mt-5">
+    <h2 class="text-center">Get in Touch</h2>
     <form>
       <div class="form-group">
         <label for="name">Name</label>
@@ -79,25 +77,13 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </section>
-  
+
+  <!-- Lightbox Script -->
   <script>
-    // Form validation
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        var forms = document.getElementsByClassName('needs-validation');
-        Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+    });
   </script>
-        
 </body>
 </html>
