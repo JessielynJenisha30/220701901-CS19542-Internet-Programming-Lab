@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <script>
+        // Function to fetch student details
+        function fetchStudentDetails() {
+            const regNo = document.getElementById("regNo").value;
+            if (regNo === "") {
+                document.getElementById("studentDetails").innerHTML = "<p>Please select a registration number.</p>";
+                return;
+            }
+
+            // AJAX request
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("studentDetails").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "getStudentDetails.php?regNo=" + regNo, true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Select a Student</h1>
+    <select id="regNo" onchange="fetchStudentDetails()">
+        <option value="">Select Registration No.</option>
+        <!-- Registration numbers will be populated here via PHP -->
+        <?php
+        // Populate options with registration numbers from the database
+        $conn = new mysqli("localhost", "username", "password", "your_database");
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT reg_no FROM students";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row["reg_no"] . "'>" . $row["reg_no"] . "</option>";
+            }
+        }
+        $conn->close();
+        ?>
+    </select>
+
+    <div id="studentDetails"><p>Please select a registration number to view details.</p></div>
+</body>
+</html>
